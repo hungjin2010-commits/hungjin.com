@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>厦门泓劲贸易有限公司 - 专业面料供应商</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Microsoft YaHei", Arial, sans-serif; }
+        
+        /* 响应式导航 */
+        .header { background: #3c404b; padding: 10px 20px; }
+        .nav { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+        .logo img { height: 50px; }
+        .menu { display: flex; gap: 20px; flex-wrap: wrap; }
+        .menu a { color: white; text-decoration: none; padding: 10px; }
+        .menu a:hover { background: #555; }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav { flex-direction: column; }
+            .menu { width: 100%; justify-content: center; }
+        }
+        
+        /* 主要内容 */
+        .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 80px 20px; text-align: center; }
+        .hero h1 { font-size: 2.5em; margin-bottom: 20px; }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.8em; }
+        }
+        
+        .content { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .product-card { border: 1px solid #ddd; padding: 20px; border-radius: 8px; }
+        
+        .footer { background: #3c404b; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="nav">
+            <div class="logo">
+                <a href="index.html"><img src="images/logo.png" alt="厦门泓劲贸易"></a>
+            </div>
+            <div class="menu">
+                <a href="index.html">首页</a>
+                <a href="products.html">产品介绍</a>
+                <a href="about.html">关于我们</a>
+                <a href="contact.html">联系我们</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="hero">
+        <h1>厦门泓劲贸易有限公司</h1>
+        <p>专业经编纬编面料供应商 | 锦氨双经平布 | 涤氨超细无光布</p>
+    </div>
+    
+    <div class="content">
+        <h2>主营产品</h2>
+        <div class="products">
+            <div class="product-card">
+                <h3>锦氨双经平布</h3>
+                <p>高品质经编面料，适用于运动服、泳衣等</p>
+            </div>
+            <div class="product-card">
+                <h3>涤氨超细无光布</h3>
+                <p>超细纤维，手感柔软，光泽自然</p>
+            </div>
+            <div class="product-card">
+                <h3>纬编针织布</h3>
+                <p>弹性好，透气性强，适合各类服装</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2026 厦门泓劲贸易有限公司 | 福建省厦门市湖里区兴隆路 88-5-101</p>
+        <p>电话：0592-XXXXXXX | 邮箱：info@popsouq.com</p>
+    </div>
+</body>
+</html>
