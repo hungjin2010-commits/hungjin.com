@@ -1,0 +1,297 @@
+// ===== Banner轮播 =====
+const bannerItems = document.querySelectorAll('.banner-slide');
+const dots = document.querySelectorAll('.banner-dots .dot');
+const prevArrow = document.querySelector('.banner-arrows .prev');
+const nextArrow = document.querySelector('.banner-arrows .next');
+let currentIndex = 0;
+let autoPlayInterval;
+
+function showBanner(index) {
+    bannerItems.forEach((item, i) => {
+        item.classList.remove('active');
+        if (dots[i]) dots[i].classList.remove('active');
+    });
+    if (bannerItems[index]) bannerItems[index].classList.add('active');
+    if (dots[index]) dots[index].classList.add('active');
+    currentIndex = index;
+}
+
+// ===== Custom Language Dropdown =====
+function switchLang(lang) {
+    const currentPath = window.location.pathname;
+    const fullPath = currentPath.split('/');
+    const fileName = fullPath.pop() || 'index.html';
+    const folderPath = currentPath.split(fileName)[0];
+    
+    let targetFile;
+    
+    if (lang === 'en') {
+        if (fileName === 'index.html') {
+            targetFile = 'index-en.html';
+        } else if (fileName.includes('-en.html')) {
+            targetFile = fileName;
+        } else {
+            targetFile = fileName.replace('.html', '-en.html');
+        }
+    } else {
+        if (fileName === 'index-en.html') {
+            targetFile = 'index.html';
+        } else if (fileName.includes('-en.html')) {
+            targetFile = fileName.replace('-en.html', '.html');
+        } else {
+            targetFile = fileName;
+        }
+    }
+    
+    window.location.href = folderPath + targetFile;
+}
+
+// Custom dropdown toggle and click handling
+const langDropdown = document.getElementById('langDropdown');
+if (langDropdown) {
+    const langCurrent = langDropdown.querySelector('.lang-current');
+    const langOptions = langDropdown.querySelectorAll('.lang-option');
+
+    // Toggle dropdown on click
+    langCurrent.addEventListener('click', function(e) {
+        e.stopPropagation();
+        langDropdown.classList.toggle('open');
+    });
+
+    // Handle option click
+    langOptions.forEach(function(option) {
+        option.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const lang = this.getAttribute('data-lang');
+            langDropdown.classList.remove('open');
+            switchLang(lang);
+        });
+    });
+
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+        if (!langDropdown.contains(e.target)) {
+            langDropdown.classList.remove('open');
+        }
+    });
+}
+
+// ===== Next/Prev Banner =====
+function nextBanner() {
+    const nextIndex = (currentIndex + 1) % bannerItems.length;
+    showBanner(nextIndex);
+}
+
+function prevBanner() {
+    const prevIndex = (currentIndex - 1 + bannerItems.length) % bannerItems.length;
+    showBanner(prevIndex);
+}
+
+function startAutoPlay() {
+    autoPlayInterval = setInterval(nextBanner, 4000);
+}
+
+function stopAutoPlay() {
+    clearInterval(autoPlayInterval);
+}
+
+dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+        showBanner(index);
+    });
+});
+
+// 初始化轮播：显示第一张，启动自动播放
+showBanner(0);
+startAutoPlay();
+
+if (prevArrow) {
+    prevArrow.addEventListener('click', () => {
+        prevBanner();
+    });
+}
+
+if (nextArrow) {
+    nextArrow.addEventListener('click', () => {
+        nextBanner();
+    });
+}
+
+// ===== 移动端菜单 =====
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const nav = document.querySelector('.nav');
+
+if (mobileMenuBtn && nav) {
+    mobileMenuBtn.addEventListener('click', () => {
+        nav.classList.toggle('active');
+    });
+}
+
+// ===== 联系表单 =====
+const contactForm = document.getElementById('contactForm');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        const formData = new FormData(contactForm);
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const message = formData.get('message');
+        
+        if (!name || !email || !message) {
+            e.preventDefault();
+            alert('请填写必填项（姓名、邮箱、留言内容）');
+            return;
+        }
+        
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            e.preventDefault();
+            alert('请输入有效的邮箱地址');
+            return;
+        }
+        // 验证通过，表单由浏览器提交到 action URL
+    });
+}
+
+// ===== 轮播图点击跳转（事件委托） =====
+document.addEventListener('click', function(e) {
+    const carouselItem = e.target.closest('.carousel-item[data-href]');
+    if (carouselItem) {
+        const href = carouselItem.getAttribute('data-href');
+        if (href) {
+            window.location.href = href;
+        }
+    }
+});
+
+// ===== 平滑滚动 =====
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href.length > 1) {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    });
+});
+
+// ===== 滚动时导航栏效果 =====
+const header = document.querySelector('.header');
+let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll > 100) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+    
+    lastScroll = currentScroll;
+});
+
+// 返回顶部功能
+document.addEventListener('DOMContentLoaded', function() {
+    // 创建返回顶部按钮
+    const backToTopBtn = document.createElement('button');
+    backToTopBtn.className = 'back-to-top';
+    backToTopBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>';
+    backToTopBtn.setAttribute('aria-label', '返回顶部');
+    document.body.appendChild(backToTopBtn);
+    
+    // 滚动时显示/隐藏按钮
+    function toggleBackToTop() {
+        if (window.pageYOffset > 300) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    }
+    
+    // 点击返回顶部
+    backToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    // 监听滚动事件
+    window.addEventListener('scroll', toggleBackToTop);
+});
+
+// ===== 产品分享功能 =====
+function shareProduct(btn) {
+    const card = btn.closest('.product-card');
+    const productTitle = card.querySelector('h3').textContent;
+    const url = window.location.href.split('?')[0].split('#')[0];
+    
+    if (navigator.share) {
+        // 使用系统分享功能（移动端）
+        navigator.share({
+            title: productTitle,
+            text: '查看产品：' + productTitle,
+            url: url
+        }).catch(function(err) {
+            // 用户取消分享，不做任何处理
+        });
+    } else {
+        // 复制链接到剪贴板（桌面端）
+        navigator.clipboard.writeText(url).then(function() {
+            // 创建临时提示
+            const toast = document.createElement('div');
+            toast.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.8);color:#fff;padding:12px 24px;border-radius:8px;font-size:14px;z-index:9999;';
+            toast.textContent = '链接已复制到剪贴板';
+            document.body.appendChild(toast);
+            setTimeout(function() {
+                toast.remove();
+            }, 2000);
+        }).catch(function(err) {
+            alert('链接：' + url);
+        });
+    }
+}
+
+// ===== 多平台社交分享功能 =====
+function shareToSocial(btn, platform) {
+    const card = btn.closest('.product-card');
+    const productTitle = card.querySelector('h3').textContent;
+    const productImg = card.querySelector('img').src;
+    const url = window.location.href.split('?')[0].split('#')[0];
+    const text = '查看产品：' + productTitle;
+    
+    let shareUrl = '';
+    
+    switch(platform) {
+        case 'facebook':
+            shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url);
+            break;
+        case 'twitter':
+            shareUrl = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url);
+            break;
+        case 'linkedin':
+            shareUrl = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url);
+            break;
+        case 'pinterest':
+            shareUrl = 'https://pinterest.com/pin/create/button/?url=' + encodeURIComponent(url) + '&media=' + encodeURIComponent(productImg) + '&description=' + encodeURIComponent(text);
+            break;
+        case 'whatsapp':
+            shareUrl = 'https://wa.me/?text=' + encodeURIComponent(text + ' ' + url);
+            break;
+        case 'line':
+            shareUrl = 'https://social-plugins.line.me/lineit/share?url=' + encodeURIComponent(url);
+            break;
+    }
+    
+    if (shareUrl) {
+        window.open(shareUrl, '_blank', 'width=600,height=400');
+    }
+    
+    // 阻止默认跳转
+    return false;
+}
