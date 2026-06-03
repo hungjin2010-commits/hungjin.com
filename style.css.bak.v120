@@ -3,12 +3,9 @@
 /* 基础重置 */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-    font-family: -apple-system, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", "Segoe UI", Arial, sans-serif;
+    font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
     color: #333;
     line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
 }
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
@@ -177,28 +174,3 @@ img { max-width: 100%; height: auto; }
 /* ===== 联系我们页面增强 ===== */
 .content h1 { color: #2c3e50; margin-bottom: 15px; }
 .content > p { margin: 8px 0; color: #555; }
-
-
-/* ====== v121 响应式优化 (2026-06-03) ====== */
-
-/* Fluid Typography */
-.hero h1 { font-size: clamp(1.8rem, 2.5vw, 2.8rem); }
-.page-header h1 { font-size: clamp(1.5rem, 2.2vw, 2.2rem); }
-.content h2 { font-size: clamp(1.3rem, 1.8vw, 1.8rem); }
-.product-category h2 { font-size: clamp(1.2rem, 1.6vw, 1.6rem); }
-
-/* 中屏优化 1366px-1599px (Windows笔记本常见分辨率) */
-@media screen and (min-width: 1366px) and (max-width: 1599px) {
-    .container { padding: 0 18px; }
-    .nav li a { padding: 7px 13px; font-size: 0.92em; }
-    .hero { padding: 60px 20px; }
-    .hero h1 { font-size: 2em; }
-    .page-header h1 { font-size: 1.8em; }
-    .product-item img { width: 200px; height: 160px; }
-    .content, .products-main, .about-section, .contact-section, .news-section { padding: 30px 18px; margin: 30px auto; }
-}
-
-/* Safari字体渲染兼容 */
-@media screen and (-webkit-min-device-pixel-ratio: 0) {
-    body { -webkit-font-smoothing: antialiased; }
-}

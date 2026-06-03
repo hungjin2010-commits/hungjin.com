@@ -1522,6 +1522,115 @@ img {
     transform: scale(1.08);
 }
 
+/* ===== Windows中等屏幕优化 (1366px - 1600px) ===== */
+@media screen and (min-width: 1025px) and (max-width: 1600px) {
+    /* 导航栏优化 */
+    .header .container {
+        padding: 0 25px;
+    }
+    
+    .nav ul li {
+        margin: 0 8px;
+    }
+    
+    .nav ul li a {
+        font-size: 17px;
+        padding: 20px 0;
+    }
+    
+    /* 标题字号适配 */
+    .banner-overlay h1 {
+        font-size: clamp(20px, 2.5vw, 28px);
+    }
+    
+    .banner-overlay p {
+        font-size: clamp(13px, 1.5vw, 16px);
+    }
+    
+    /* 欢迎区域优化 */
+    .welcome {
+        padding: 50px 0;
+    }
+    
+    .welcome .container {
+        gap: 40px;
+        padding: 0 30px;
+    }
+    
+    .welcome-content h2 {
+        font-size: 26px;
+        margin-bottom: 15px;
+    }
+    
+    .welcome-content p {
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+    
+    /* 服务热线卡片优化 - 避免与正文重叠 */
+    .hotline {
+        padding: 20px 30px;
+        min-width: 260px;
+    }
+    
+    .hotline .label {
+        font-size: 18px;
+        letter-spacing: 2px;
+    }
+    
+    .hotline .number {
+        font-size: 24px;
+        letter-spacing: 1px;
+    }
+    
+    /* 容器留白增加 */
+    .container {
+        padding: 0 25px;
+    }
+    
+    /* 新闻关于区域优化 */
+    .news-about {
+        padding: 60px 0;
+    }
+    
+    .news-about .container {
+        gap: 40px;
+        padding: 0 25px;
+    }
+    
+    /* 产品卡片优化 */
+    .products-grid-new {
+        gap: 20px;
+    }
+    
+    .product-card-img {
+        height: 180px;
+    }
+    
+    /* 知名客户区域 */
+    .clients {
+        padding: 50px 0;
+    }
+    
+    .client-list {
+        gap: 15px;
+    }
+    
+    /* 联系区域 */
+    .contact-section {
+        padding: 60px 0;
+    }
+    
+    .contact-layout {
+        gap: 20px;
+    }
+    
+    .contact-info-box,
+    .contact-form-box {
+        padding: 25px 30px;
+    }
+}
+
 /* ===== 响应式布局（合并自 responsive.css） ===== */
 /* ===== 响应式布局 ===== */
 @media screen and (max-width: 1024px) {
