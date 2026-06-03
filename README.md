@@ -1,11 +1,11 @@
-# popsouq.com
+# hungjin.com
 
 厦门泓劲贸易有限公司官方网站
 
 ## 项目结构
 
 ```
-popsouq.com/
+hungjin.com/
 ├── index.html          # 中文首页
 ├── index-en.html       # 英文首页
 ├── css/
