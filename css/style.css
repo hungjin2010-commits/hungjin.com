@@ -2202,8 +2202,17 @@ img {
 
 /* 响应式补充 */
 @media (max-width: 768px) {
-    .stats-grid { grid-template-columns: repeat(2, 1fr); }
-    .advantage-list { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .stat-box { padding: 18px 12px; }
+    .stat-number { font-size: 28px; margin-bottom: 6px; }
+    .stat-text { font-size: 14px; }
+    .about-stats-section { padding: 35px 0; }
+    .advantage-list { grid-template-columns: 1fr; gap: 14px; }
+    .advantage-item { padding: 16px 14px; gap: 12px; }
+    .advantage-icon { width: 40px; height: 40px; font-size: 20px; }
+    .advantage-content h3 { font-size: 16px; margin-bottom: 6px; }
+    .advantage-content p { font-size: 14.5px; line-height: 1.65; }
+    .about-advantage { padding: 35px 0 60px 0; }
     /* [已删除: .news-grid 响应式 — 死代码] */
 }
 
