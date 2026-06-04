@@ -3350,12 +3350,41 @@ html {
     
     /* 关于我们手机端优化 */
     .about-text p {
-    
         line-height: 1.8;
+        text-indent: 2em;
     }
     
     /* 优势描述 */
     .advantage-content p {
         line-height: 1.7;
+    }
+    
+    /* 知识列表段落 - 手机端优化 */
+    .knowledge-item p {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+    
+    /* 文章内容区 - 手机端优化（知识/新闻共用）*/
+    .article-content p,
+    .news-article-content p {
+        font-size: 15px;
+        line-height: 1.7;
+        text-indent: 2em;
+    }
+    
+    /* 产品描述 - 手机端优化 */
+    .product-card-body p,
+    .garment-desc p {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+    
+    /* 联系信息 - 手机端优化 */
+    .info-item p,
+    .contact-info h3,
+    .contact-info p {
+        font-size: 15px;
+        line-height: 1.6;
     }
 }
