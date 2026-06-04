@@ -598,7 +598,6 @@ img {
     color: var(--text-light);
     margin-bottom: 15px;
     text-align: justify;
-    text-indent: 2em;
 }
 
 .welcome-content strong {
@@ -2588,7 +2587,6 @@ img {
         line-height: 1.8;
         margin-bottom: 12px;
         text-align: left;
-        text-indent: 2em;
     }
     
     /* 服务热线优化 */
