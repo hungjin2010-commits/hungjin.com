@@ -3264,3 +3264,77 @@ html {
         font-size: 13px;
     }
 }
+
+/* ===== 手机端全局紧凑优化 (768px及以下) ===== */
+@media screen and (max-width: 768px) {
+    /* 页面头部 - 与主页Banner节奏一致 */
+    .page-header {
+        padding: 35px 0;
+    }
+    .page-header h1 {
+        font-size: 24px;
+    }
+    
+    /* 面包屑 - 紧凑 */
+    .breadcrumb {
+        padding: 8px 0;
+        font-size: 14px;
+    }
+    
+    /* 子页面内容区padding统一40px */
+    .about-intro,
+    .about-stats-section,
+    .about-advantage,
+    .company-gallery,
+    .team-gallery,
+    .certificates-section,
+    .contact-full,
+    .news-list-page {
+        padding: 40px 0;
+    }
+    
+    /* 数据统计区 - 紧凑 */
+    .stat-box {
+        padding: 20px;
+    }
+    .stat-number {
+        font-size: 28px;
+    }
+    
+    /* 优势列表间距 */
+    .advantage-item {
+        padding: 18px;
+    }
+    
+    /* 产品卡片标题 */
+    .product-card-body h3 {
+        font-size: 16px;
+    }
+}
+
+/* ===== 手机端480px深度优化 ===== */
+@media screen and (max-width: 480px) {
+    /* 知识列表字体 */
+    .knowledge-item h3 {
+        font-size: 15px;
+    }
+    .knowledge-item p {
+        font-size: 15px;
+    }
+    
+    /* 产品卡片图片高度 */
+    .product-img {
+        height: 180px;
+    }
+    
+    /* 资质认证更紧凑 */
+    .certificate-info {
+        padding: 16px;
+    }
+    .certificate-info h3 {
+        font-size: 17px;
+    }
+    .certificate-info p {
+        font-size: 15px;
+    }
+}
