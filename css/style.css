@@ -2552,6 +2552,34 @@ img {
         padding: 0 12px;
     }
     
+    /* Banner轮播优化 - 手机端 */
+    .banner-overlay {
+        bottom: 50px;
+        width: 92%;
+    }
+    
+    .banner-overlay h1 {
+        font-size: 16px;
+        line-height: 1.4;
+        letter-spacing: 1px;
+        margin-bottom: 6px;
+    }
+    
+    .banner-overlay p {
+        font-size: 12px;
+        line-height: 1.5;
+        letter-spacing: 0.5px;
+    }
+    
+    .banner-dots {
+        bottom: 15px;
+    }
+    
+    .banner-dots .dot {
+        width: 8px;
+        height: 8px;
+    }
+    
     /* 欢迎区域优化 */
     .welcome {
         padding: 40px 0;
