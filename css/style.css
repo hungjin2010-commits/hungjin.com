@@ -3354,6 +3354,15 @@ html {
         text-indent: 2em;
     }
     
+    /* 英文页面 - 不缩进，行高更紧凑 */
+    [lang="en"] .about-text p,
+    [lang="en"] .article-content p,
+    [lang="en"] .news-article-content p {
+        text-indent: 0;
+        line-height: 1.65;
+        margin-bottom: 14px;
+    }
+    
     /* 优势描述 */
     .advantage-content p {
         line-height: 1.7;
