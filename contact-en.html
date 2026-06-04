@@ -153,10 +153,7 @@
                     <h2>Leave a Message</h2>
                     <p class="subtitle">Fill out the form below and we'll reply shortly</p>
                     
-                    <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
-                        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
-                        <input type="hidden" name="subject" value="[xmhungjin.com] New Inquiry">
-                        <input type="hidden" name="from_name" value="Xiamen Hungjin Website">
+                    <form id="contactForm">
                         
                         <div class="form-row">
                             <div class="form-group">
@@ -242,34 +239,16 @@
                 return;
             }
             
-            // Show submitting state
-            var submitBtn = this.querySelector('.submit-btn');
-            var originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Submitting...';
-            submitBtn.disabled = true;
+            var subject = encodeURIComponent('[xmhungjin.com] New Inquiry from ' + name);
+            var body = encodeURIComponent(
+                'Name: ' + name + '\n' +
+                'Company: ' + (company || 'Not provided') + '\n' +
+                'Email: ' + email + '\n' +
+                'Phone: ' + (phone || 'Not provided') + '\n\n' +
+                'Message:\n' + message
+            );
             
-            // Submit form to Web3Forms API
-            var formData = new FormData(this);
-            fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                body: formData
-            })
-            .then(function(response) { return response.json(); })
-            .then(function(data) {
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-                if (data.success) {
-                    alert('✅ Message sent successfully! We will get back to you soon.');
-                    document.getElementById('contactForm').reset();
-                } else {
-                    alert('❌ Failed to send. Please try again or email us at qy125100@xmhungjin.com');
-                }
-            })
-            .catch(function(error) {
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-                alert('❌ Failed to send. Please try again or email us at qy125100@xmhungjin.com');
-            });
+            window.location.href = 'mailto:qy125100@xmhungjin.com?subject=' + subject + '&body=' + body;
         });
     </script>
 </body>

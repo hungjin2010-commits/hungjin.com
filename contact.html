@@ -154,10 +154,7 @@
                     <h2>在线留言</h2>
                     <p class="subtitle">填写下方表单，我们会尽快回复您</p>
                     
-                    <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
-                        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
-                        <input type="hidden" name="subject" value="【xmhungjin.com】新咨询">
-                        <input type="hidden" name="from_name" value="厦门泓劲贸易官网">
+                    <form id="contactForm">
                         
                         <div class="form-row">
                             <div class="form-group">
@@ -243,34 +240,16 @@
                 return;
             }
             
-            // 显示提交中状态
-            var submitBtn = this.querySelector('.submit-btn');
-            var originalText = submitBtn.textContent;
-            submitBtn.textContent = '提交中...';
-            submitBtn.disabled = true;
+            var subject = encodeURIComponent('【xmhungjin.com】新咨询来自 ' + name);
+            var body = encodeURIComponent(
+                '姓名: ' + name + '\n' +
+                '公司: ' + (company || '未填写') + '\n' +
+                '邮箱: ' + email + '\n' +
+                '电话: ' + (phone || '未填写') + '\n\n' +
+                '留言内容:\n' + message
+            );
             
-            // 提交表单到Web3Forms API
-            var formData = new FormData(this);
-            fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                body: formData
-            })
-            .then(function(response) { return response.json(); })
-            .then(function(data) {
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-                if (data.success) {
-                    alert('✅ 留言发送成功！我们会尽快回复您。');
-                    document.getElementById('contactForm').reset();
-                } else {
-                    alert('❌ 发送失败，请稍后重试或直接发邮件至 qy125100@xmhungjin.com');
-                }
-            })
-            .catch(function(error) {
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-                alert('❌ 发送失败，请稍后重试或直接发邮件至 qy125100@xmhungjin.com');
-            });
+            window.location.href = 'mailto:qy125100@xmhungjin.com?subject=' + subject + '&body=' + body;
         });
     </script>
 </body>
