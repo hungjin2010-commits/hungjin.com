@@ -176,7 +176,7 @@ img {
     padding: 25px 0;
     display: block;
     transition: color 0.3s;
-    font-size: 26px;
+    font-size: 30px;
     font-weight: 600;
 }
 
@@ -1811,7 +1811,7 @@ img {
         padding: 12px 0;
         display: block;
         border-bottom: 1px solid rgba(255,255,255,0.1);
-        font-size: 24px;
+        font-size: 22px;
         line-height: 1.5;
     }
 
