@@ -29,7 +29,7 @@
     <link rel="alternate" hreflang="en" href="https://xmhungjin.com/index-en.html">
     <link rel="alternate" hreflang="x-default" href="https://xmhungjin.com/">
     
-    <link rel="stylesheet" href="css/style.css?v=128">
+    <link rel="stylesheet" href="css/style.css?v=129">
     
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -357,10 +357,7 @@
                     <h2>在线留言</h2>
                     <p class="subtitle">填写下方表单，我们会尽快回复您</p>
                     
-                    <form action="https://api.web3forms.com/submit" method="POST">
-                        <input type="hidden" name="access_key" value="PLACEHOLDER-REPLACE-WITH-REAL-KEY">
-                        <input type="hidden" name="subject" value="新咨询来自 xmhungjin.com">
-                        <input type="checkbox" name="botcheck" style="display:none">
+                    <form id="homeContactForm">
                         
                         <div class="form-row">
                             <div class="form-group">
@@ -394,6 +391,40 @@
                             <button type="reset" class="reset-btn">重置</button>
                         </div>
                     </form>
+                    <script>
+                        document.getElementById('homeContactForm').addEventListener('submit', function(e) {
+                            e.preventDefault();
+                            var name = document.getElementById('name').value.trim();
+                            var company = document.getElementById('company').value.trim();
+                            var email = document.getElementById('email').value.trim();
+                            var phone = document.getElementById('phone').value.trim();
+                            var message = document.getElementById('message').value.trim();
+                            
+                            // 表单验证
+                            if (!name || !email || !message) {
+                                alert('请填写必填项：姓名、邮箱、留言内容');
+                                return;
+                            }
+                            
+                            // 邮箱格式验证
+                            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                            if (!emailRegex.test(email)) {
+                                alert('请输入有效的邮箱地址');
+                                return;
+                            }
+                            
+                            var subject = encodeURIComponent('【xmhungjin.com】新咨询来自 ' + name);
+                            var body = encodeURIComponent(
+                                '姓名: ' + name + '\n' +
+                                '公司: ' + (company || '未填写') + '\n' +
+                                '邮箱: ' + email + '\n' +
+                                '电话: ' + (phone || '未填写') + '\n\n' +
+                                '留言内容:\n' + message
+                            );
+                            
+                            window.location.href = 'mailto:qy125100@xmhungjin.com?subject=' + subject + '&body=' + body;
+                        });
+                    </script>
                 </div>
             </div>
         </div>
