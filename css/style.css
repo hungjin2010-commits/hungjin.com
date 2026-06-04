@@ -3359,8 +3359,22 @@ html {
     [lang="en"] .article-content p,
     [lang="en"] .news-article-content p {
         text-indent: 0;
-        line-height: 1.65;
-        margin-bottom: 14px;
+        font-size: 15px;
+        line-height: 1.7;
+        margin-bottom: 16px;
+        color: #444;
+    }
+    
+    /* 英文页面标题优化 */
+    [lang="en"] .about-intro-content h2 {
+        font-size: 22px;
+        margin-bottom: 20px;
+        margin-top: 10px;
+    }
+    
+    /* 英文页面内容区内边距 */
+    [lang="en"] .about-text {
+        padding: 10px 5px;
     }
     
     /* 优势描述 */
