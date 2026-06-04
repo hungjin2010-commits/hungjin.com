@@ -2052,6 +2052,7 @@ img {
 }
 [lang="en"] .about-text p {
     text-align: left;
+    text-indent: 0;
     line-height: 1.8;
     color: #333;
     margin-bottom: 16px;
