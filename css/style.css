@@ -2052,18 +2052,6 @@ img {
     color: #c00;
     font-weight: 600;
 }
-
-/* 英文首页欢迎栏 - 居中+无缩进 */
-[lang="en"] .welcome-content {
-    text-align: center;
-}
-[lang="en"] .welcome-content p {
-    text-indent: 0;
-    text-align: center;
-    line-height: 1.75;
-    margin-bottom: 18px;
-    color: #3a3a3a;
-}
 .about-stats-section {
     background: #f9f9f9;
     padding: 60px 0;
