@@ -597,7 +597,7 @@ img {
 .welcome-content p {
     color: var(--text-light);
     margin-bottom: 15px;
-    text-align: justify;
+
 }
 
 .welcome-content strong {
@@ -870,7 +870,7 @@ img {
 .about-content p {
     color: var(--text-light);
     margin-bottom: 15px;
-    text-align: justify;
+
 }
 
 .about-stats {
@@ -2461,7 +2461,7 @@ img {
     color: #444;
     line-height: 1.9;
     margin-bottom: 16px;
-    text-align: justify;
+
 }
 
 .article-content ul,
@@ -3350,7 +3350,7 @@ html {
     
     /* 关于我们手机端优化 */
     .about-text p {
-        text-align: justify;
+    
         line-height: 1.8;
     }
     
