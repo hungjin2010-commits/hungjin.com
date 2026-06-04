@@ -2001,12 +2001,35 @@ img {
     font-size: 30px;
     margin-bottom: 30px;
     color: #1a1a2e;
+    font-weight: 600;
 }
 .about-intro-content p {
     font-size: 17px;
     line-height: 1.8;
     color: #555;
     margin-bottom: 20px;
+}
+
+/* 英文页面桌面端排版 - 左对齐+装饰线+红色强调 */
+[lang="en"] .about-intro-content h2 {
+    text-align: left;
+    border-left: 4px solid #c00;
+    padding-left: 14px;
+    font-size: 28px;
+    margin-bottom: 28px;
+}
+[lang="en"] .about-text {
+    text-align: left;
+}
+[lang="en"] .about-text p {
+    text-align: left;
+    line-height: 1.75;
+    color: #3a3a3a;
+    margin-bottom: 18px;
+}
+[lang="en"] .about-text p strong {
+    color: #c00;
+    font-weight: 600;
 }
 .about-stats-section {
     background: #f9f9f9;
