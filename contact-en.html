@@ -220,11 +220,24 @@
     <script>
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            var name = document.getElementById('name').value;
-            var company = document.getElementById('company').value;
-            var email = document.getElementById('email').value;
-            var phone = document.getElementById('phone').value;
-            var message = document.getElementById('message').value;
+            var name = document.getElementById('name').value.trim();
+            var company = document.getElementById('company').value.trim();
+            var email = document.getElementById('email').value.trim();
+            var phone = document.getElementById('phone').value.trim();
+            var message = document.getElementById('message').value.trim();
+            
+            // Form validation
+            if (!name || !email || !message) {
+                alert('Please fill in required fields: Name, Email, Message');
+                return;
+            }
+            
+            // Email format validation
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
             
             var subject = encodeURIComponent('[xmhungjin.com] New Inquiry from ' + name);
             var body = encodeURIComponent(
@@ -235,7 +248,32 @@
                 'Message:\n' + message
             );
             
-            window.location.href = 'mailto:qy125100@xmhungjin.com?subject=' + subject + '&body=' + body;
+            var mailtoLink = 'mailto:qy125100@xmhungjin.com?subject=' + subject + '&body=' + body;
+            
+            // Try to open email client
+            window.location.href = mailtoLink;
+            
+            // Show feedback message
+            setTimeout(function() {
+                var confirmed = confirm('Did the email client open?\n\nIf not, you can:\n1. Email us directly at: qy125100@xmhungjin.com\n2. Contact us via WhatsApp: +52 15510217089\n3. Call us: (86) 592-5986779\n\nClick "OK" to copy the email address to clipboard, or "Cancel" to close this message.');
+                if (confirmed) {
+                    // Copy email to clipboard
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText('qy125100@xmhungjin.com').then(function() {
+                            alert('Email address copied to clipboard!');
+                        });
+                    } else {
+                        // Fallback
+                        var textarea = document.createElement('textarea');
+                        textarea.value = 'qy125100@xmhungjin.com';
+                        document.body.appendChild(textarea);
+                        textarea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textarea);
+                        alert('Email address copied to clipboard!');
+                    }
+                }
+            }, 1000);
         });
     </script>
 </body>

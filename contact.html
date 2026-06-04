@@ -221,11 +221,24 @@
     <script>
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            var name = document.getElementById('name').value;
-            var company = document.getElementById('company').value;
-            var email = document.getElementById('email').value;
-            var phone = document.getElementById('phone').value;
-            var message = document.getElementById('message').value;
+            var name = document.getElementById('name').value.trim();
+            var company = document.getElementById('company').value.trim();
+            var email = document.getElementById('email').value.trim();
+            var phone = document.getElementById('phone').value.trim();
+            var message = document.getElementById('message').value.trim();
+            
+            // 表单验证
+            if (!name || !email || !message) {
+                alert('请填写必填项：姓名、邮箱、留言内容');
+                return;
+            }
+            
+            // 邮箱格式验证
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('请输入有效的邮箱地址');
+                return;
+            }
             
             var subject = encodeURIComponent('【xmhungjin.com】新咨询来自 ' + name);
             var body = encodeURIComponent(
@@ -236,7 +249,32 @@
                 '留言内容:\n' + message
             );
             
-            window.location.href = 'mailto:qy125100@xmhungjin.com?subject=' + subject + '&body=' + body;
+            var mailtoLink = 'mailto:qy125100@xmhungjin.com?subject=' + subject + '&body=' + body;
+            
+            // 尝试打开邮件客户端
+            window.location.href = mailtoLink;
+            
+            // 显示提示信息
+            setTimeout(function() {
+                var confirmed = confirm('邮件客户端是否已打开？\n\n如果邮件客户端没有自动打开，您可以选择：\n1. 直接发送邮件至：qy125100@xmhungjin.com\n2. 通过WhatsApp联系我们：+52 15510217089\n3. 直接拨打电话：(86) 592-5986779\n\n点击"确定"复制邮箱地址到剪贴板，点击"取消"关闭此提示。');
+                if (confirmed) {
+                    // 复制邮箱到剪贴板
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText('qy125100@xmhungjin.com').then(function() {
+                            alert('邮箱地址已复制到剪贴板！');
+                        });
+                    } else {
+                        // 降级方案
+                        var textarea = document.createElement('textarea');
+                        textarea.value = 'qy125100@xmhungjin.com';
+                        document.body.appendChild(textarea);
+                        textarea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textarea);
+                        alert('邮箱地址已复制到剪贴板！');
+                    }
+                }
+            }, 1000);
         });
     </script>
 </body>
