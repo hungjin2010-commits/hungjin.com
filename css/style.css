@@ -2010,6 +2010,25 @@ img {
     margin-bottom: 20px;
 }
 
+/* 中文关于我们桌面端排版 - 居中标题+首行缩进+红色强调 */
+:not([lang="en"]) .about-intro-content h2 {
+    text-align: center;
+    font-weight: 600;
+}
+:not([lang="en"]) .about-text {
+    text-align: left;
+}
+:not([lang="en"]) .about-text p {
+    text-indent: 2em;
+    line-height: 1.9;
+    color: #3a3a3a;
+    margin-bottom: 18px;
+}
+:not([lang="en"]) .about-text p strong {
+    color: #c00;
+    font-weight: 600;
+}
+
 /* 英文页面桌面端排版 - 左对齐+红色强调 */
 [lang="en"] .about-intro-content h2 {
     text-align: center;
@@ -3373,8 +3392,14 @@ html {
     
     /* 关于我们手机端优化 */
     .about-text p {
-        line-height: 1.8;
+        line-height: 1.85;
         text-indent: 2em;
+        color: #3a3a3a;
+        margin-bottom: 16px;
+    }
+    .about-text p strong {
+        color: #c00;
+        font-weight: 600;
     }
     
     /* 英文页面 - 左对齐，优雅排版 */
