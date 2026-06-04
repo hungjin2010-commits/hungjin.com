@@ -2047,8 +2047,6 @@ img {
 }
 [lang="en"] .about-text {
     text-align: left;
-    max-width: 800px;
-    margin: 0 auto;
 }
 [lang="en"] .about-text p {
     text-align: left;
