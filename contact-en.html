@@ -153,7 +153,10 @@
                     <h2>Leave a Message</h2>
                     <p class="subtitle">Fill out the form below and we'll reply shortly</p>
                     
-                    <form id="contactForm">
+                    <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+                        <input type="hidden" name="subject" value="[xmhungjin.com] New Inquiry">
+                        <input type="hidden" name="from_name" value="Xiamen Hungjin Website">
                         
                         <div class="form-row">
                             <div class="form-group">
@@ -239,41 +242,34 @@
                 return;
             }
             
-            var subject = encodeURIComponent('[xmhungjin.com] New Inquiry from ' + name);
-            var body = encodeURIComponent(
-                'Name: ' + name + '\n' +
-                'Company: ' + (company || 'Not provided') + '\n' +
-                'Email: ' + email + '\n' +
-                'Phone: ' + (phone || 'Not provided') + '\n\n' +
-                'Message:\n' + message
-            );
+            // Show submitting state
+            var submitBtn = this.querySelector('.submit-btn');
+            var originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
             
-            var mailtoLink = 'mailto:qy125100@xmhungjin.com?subject=' + subject + '&body=' + body;
-            
-            // Try to open email client
-            window.location.href = mailtoLink;
-            
-            // Show feedback message
-            setTimeout(function() {
-                var confirmed = confirm('Did the email client open?\n\nIf not, you can:\n1. Email us directly at: qy125100@xmhungjin.com\n2. Contact us via WhatsApp: +52 15510217089\n3. Call us: (86) 592-5986779\n\nClick "OK" to copy the email address to clipboard, or "Cancel" to close this message.');
-                if (confirmed) {
-                    // Copy email to clipboard
-                    if (navigator.clipboard) {
-                        navigator.clipboard.writeText('qy125100@xmhungjin.com').then(function() {
-                            alert('Email address copied to clipboard!');
-                        });
-                    } else {
-                        // Fallback
-                        var textarea = document.createElement('textarea');
-                        textarea.value = 'qy125100@xmhungjin.com';
-                        document.body.appendChild(textarea);
-                        textarea.select();
-                        document.execCommand('copy');
-                        document.body.removeChild(textarea);
-                        alert('Email address copied to clipboard!');
-                    }
+            // Submit form to Web3Forms API
+            var formData = new FormData(this);
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            })
+            .then(function(response) { return response.json(); })
+            .then(function(data) {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                if (data.success) {
+                    alert('✅ Message sent successfully! We will get back to you soon.');
+                    document.getElementById('contactForm').reset();
+                } else {
+                    alert('❌ Failed to send. Please try again or email us at qy125100@xmhungjin.com');
                 }
-            }, 1000);
+            })
+            .catch(function(error) {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                alert('❌ Failed to send. Please try again or email us at qy125100@xmhungjin.com');
+            });
         });
     </script>
 </body>

@@ -154,7 +154,10 @@
                     <h2>在线留言</h2>
                     <p class="subtitle">填写下方表单，我们会尽快回复您</p>
                     
-                    <form id="contactForm">
+                    <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+                        <input type="hidden" name="subject" value="【xmhungjin.com】新咨询">
+                        <input type="hidden" name="from_name" value="厦门泓劲贸易官网">
                         
                         <div class="form-row">
                             <div class="form-group">
@@ -240,41 +243,34 @@
                 return;
             }
             
-            var subject = encodeURIComponent('【xmhungjin.com】新咨询来自 ' + name);
-            var body = encodeURIComponent(
-                '姓名: ' + name + '\n' +
-                '公司: ' + (company || '未填写') + '\n' +
-                '邮箱: ' + email + '\n' +
-                '电话: ' + (phone || '未填写') + '\n\n' +
-                '留言内容:\n' + message
-            );
+            // 显示提交中状态
+            var submitBtn = this.querySelector('.submit-btn');
+            var originalText = submitBtn.textContent;
+            submitBtn.textContent = '提交中...';
+            submitBtn.disabled = true;
             
-            var mailtoLink = 'mailto:qy125100@xmhungjin.com?subject=' + subject + '&body=' + body;
-            
-            // 尝试打开邮件客户端
-            window.location.href = mailtoLink;
-            
-            // 显示提示信息
-            setTimeout(function() {
-                var confirmed = confirm('邮件客户端是否已打开？\n\n如果邮件客户端没有自动打开，您可以选择：\n1. 直接发送邮件至：qy125100@xmhungjin.com\n2. 通过WhatsApp联系我们：+52 15510217089\n3. 直接拨打电话：(86) 592-5986779\n\n点击"确定"复制邮箱地址到剪贴板，点击"取消"关闭此提示。');
-                if (confirmed) {
-                    // 复制邮箱到剪贴板
-                    if (navigator.clipboard) {
-                        navigator.clipboard.writeText('qy125100@xmhungjin.com').then(function() {
-                            alert('邮箱地址已复制到剪贴板！');
-                        });
-                    } else {
-                        // 降级方案
-                        var textarea = document.createElement('textarea');
-                        textarea.value = 'qy125100@xmhungjin.com';
-                        document.body.appendChild(textarea);
-                        textarea.select();
-                        document.execCommand('copy');
-                        document.body.removeChild(textarea);
-                        alert('邮箱地址已复制到剪贴板！');
-                    }
+            // 提交表单到Web3Forms API
+            var formData = new FormData(this);
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            })
+            .then(function(response) { return response.json(); })
+            .then(function(data) {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                if (data.success) {
+                    alert('✅ 留言发送成功！我们会尽快回复您。');
+                    document.getElementById('contactForm').reset();
+                } else {
+                    alert('❌ 发送失败，请稍后重试或直接发邮件至 qy125100@xmhungjin.com');
                 }
-            }, 1000);
+            })
+            .catch(function(error) {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                alert('❌ 发送失败，请稍后重试或直接发邮件至 qy125100@xmhungjin.com');
+            });
         });
     </script>
 </body>
