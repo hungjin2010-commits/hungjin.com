@@ -2037,22 +2037,25 @@ img {
     font-weight: 600;
 }
 
-/* 英文页面桌面端排版 - 左对齐+红色强调 */
+/* 英文页面桌面端排版 - 居中标题+优雅段落 */
 [lang="en"] .about-intro-content h2 {
     text-align: center;
     border-left: none;
     padding-left: 0;
     font-size: 28px;
-    margin-bottom: 28px;
+    margin-bottom: 24px;
 }
 [lang="en"] .about-text {
     text-align: left;
+    max-width: 800px;
+    margin: 0 auto;
 }
 [lang="en"] .about-text p {
     text-align: left;
-    line-height: 1.75;
-    color: #3a3a3a;
-    margin-bottom: 18px;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 16px;
+    font-size: 17px;
 }
 [lang="en"] .about-text p strong {
     color: #c00;
