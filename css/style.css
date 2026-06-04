@@ -3277,10 +3277,13 @@ html {
         font-size: 24px;
     }
     
-    /* 段落首行缩进 */
+    /* 段落首行缩进 + 欢迎标题居中 */
     .about-text p,
     .welcome-content p {
         text-indent: 2em;
+    }
+    .welcome-content h2 {
+        text-align: center;
     }
     
     /* 面包屑 - 紧凑 */
